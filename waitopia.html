@@ -295,9 +295,11 @@
 <script src="https://jimuki.com/wp-content/themes/jimuki/assets/js/common.js?1644399706"></script>
 
 
+
+
 <!-- ===== 修正指示モード (review mode) ===== -->
 <style id="revmode-style">
-#revBtn{position:fixed;right:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;border:none;border-radius:26px;padding:13px 20px;font:700 14px/1 "Hiragino Kaku Gothic ProN",sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35);cursor:pointer;}
+#revBtn{display:none;position:fixed;right:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;border:none;border-radius:26px;padding:13px 20px;font:700 14px/1 "Hiragino Kaku Gothic ProN",sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35);cursor:pointer;}
 #revBtn.on{background:#111;}
 #revTag{position:fixed;left:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;padding:7px 13px;border-radius:7px;font:700 12px/1.4 sans-serif;display:none;max-width:260px;}
 #revTag.on{display:block;}
@@ -329,6 +331,9 @@
   function save(){try{localStorage.setItem(KEY,JSON.stringify(notes))}catch(e){mem=notes}}
   var btn=document.getElementById('revBtn'),tag=document.getElementById('revTag'),
       panel=document.getElementById('revPanel'),list=document.getElementById('revList');
+  // 修正指示モードはローカル(file://)表示時のみ有効。公開テストページ(http/https)では非表示。
+  if(location.protocol!=='file:'){ return; }
+  btn.style.display='block';
 
   function cssPath(el){
     var parts=[],d=0;

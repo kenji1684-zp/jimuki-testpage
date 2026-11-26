@@ -225,7 +225,7 @@
             <div class="p-video01__wr" id="target_iframe">
                 <a class="p-video01" href="https://www.youtube.com/watch?v=xD6ObpxB77Q" target="_blank" rel="noopener" style="display:block;position:absolute;inset:0;background:#000;"><img src="https://img.youtube.com/vi/xD6ObpxB77Q/hqdefault.jpg" alt="3Dプリンター動画" style="width:100%;height:100%;object-fit:cover;display:block;"><span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:rgba(0,0,0,.72);border-radius:12px;display:flex;align-items:center;justify-content:center;"><span style="width:0;height:0;border-style:solid;border-width:10px 0 10px 17px;border-color:transparent transparent transparent #fff;margin-left:3px;"></span></span></a>
             </div>
-        </div><div class="top-service__waitopia" style="flex:1 1 380px;min-width:0;"><h3 class="p-ttl02 mb20 pmb40">待ち時間・順番表示システム「ウェイトピア」</h3><a href="waitopia.html" style="display:block;overflow:hidden;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);"><img src="assets/waitopia/waitopia-thumb.jpg" alt="ウェイトピア 待ち時間・順番表示システム" loading="lazy" style="width:100%;height:auto;display:block;"></a><div class="p-btn02__wr is-center" style="margin-top:16px;"><a class="p-btn02" href="waitopia.html">詳しく見る</a></div></div></div>
+        </div><div class="top-service__waitopia" style="flex:1 1 380px;min-width:0;"><h3 class="p-ttl02 mb20 pmb40">待ち時間・順番表示システム<br class="sp">「ウェイトピア」</h3><a href="waitopia.html" style="display:block;overflow:hidden;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.12);"><img src="assets/waitopia/waitopia-thumb.jpg" alt="ウェイトピア 待ち時間・順番表示システム" loading="lazy" style="width:100%;height:auto;display:block;"></a><div class="p-btn02__wr is-center" style="margin-top:16px;"><a class="p-btn02" href="waitopia.html">詳しく見る</a></div></div></div>
         <div class="p-btn02__wr is-center">
             <a class="p-btn02" href="service.html">商品紹介</a>
         </div>
@@ -456,9 +456,11 @@
 <script src="https://jimuki.com/wp-content/themes/jimuki/assets/js/common.js?1644399706"></script>
 
 
+
+
 <!-- ===== 修正指示モード (review mode) ===== -->
 <style id="revmode-style">
-#revBtn{position:fixed;right:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;border:none;border-radius:26px;padding:13px 20px;font:700 14px/1 "Hiragino Kaku Gothic ProN",sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35);cursor:pointer;}
+#revBtn{display:none;position:fixed;right:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;border:none;border-radius:26px;padding:13px 20px;font:700 14px/1 "Hiragino Kaku Gothic ProN",sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.35);cursor:pointer;}
 #revBtn.on{background:#111;}
 #revTag{position:fixed;left:16px;bottom:16px;z-index:2147483600;background:#e4002b;color:#fff;padding:7px 13px;border-radius:7px;font:700 12px/1.4 sans-serif;display:none;max-width:260px;}
 #revTag.on{display:block;}
@@ -490,6 +492,9 @@
   function save(){try{localStorage.setItem(KEY,JSON.stringify(notes))}catch(e){mem=notes}}
   var btn=document.getElementById('revBtn'),tag=document.getElementById('revTag'),
       panel=document.getElementById('revPanel'),list=document.getElementById('revList');
+  // 修正指示モードはローカル(file://)表示時のみ有効。公開テストページ(http/https)では非表示。
+  if(location.protocol!=='file:'){ return; }
+  btn.style.display='block';
 
   function cssPath(el){
     var parts=[],d=0;
